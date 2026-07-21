@@ -39,24 +39,24 @@ app.put("/projects/:id", function (request, response) {
   const { id } = request.params;
   const { name, owner } = request.body;
 
-    const projectIndex = projects.findIndex(p => p.id === id);
-    if (projectIndex < 0) {
-        return response.status(404).json({ error: 'Project not found' });
-    }
+  const projectIndex = projects.findIndex((p) => p.id === id);
+  if (projectIndex < 0) {
+    return response.status(404).json({ error: "Project not found" });
+  }
 
-    if (!name || !owner) {
-        return response.status(400).json({ error: 'Name and owner are required' });
-    }
+  if (!name || !owner) {
+    return response.status(400).json({ error: "Name and owner are required" });
+  }
 
-    const project = {
-        id,
-        name, 
-        owner
-    }
+  const project = {
+    id,
+    name,
+    owner,
+  };
 
-    projects[projectIndex] = project;
+  projects[projectIndex] = project;
 
-    return response.json(project);
+  return response.json(project);
 });
 
 app.delete("/projects/:id", function (request, response) {
